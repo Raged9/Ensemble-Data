@@ -8,6 +8,12 @@ const PORT = 5000;
 const config = require('./core/config');
 const logger = require('./core/logger')('app');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+const routes = require('./api/routes.js'); // Adjust path as needed
+app.use('/', routes());
+
 const connectionString = new URL(config.database.connection);
 connectionString.pathname += config.database.name;
 
@@ -25,7 +31,7 @@ db.once('open', () => {
 });
 
 app.listen(PORT, ()=>{
-  console.log(`App listening on port ${PORT}`);
+  logger.info(`App listening on port ${PORT}`);
 })
 
 const dbExports = {};
@@ -45,7 +51,3 @@ fs.readdirSync(__dirname)
   });
 
 module.exports = dbExports;
-
-app.get('/',(request,response)=>{
-  response.send('Hello, World! Good morning!');
-});

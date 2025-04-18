@@ -1,4 +1,4 @@
-const { Users } = require('../../../models');
+const { Users } = require('/Users/Arya/Documents/Ensemble Data/Ensemble-Data/src/models/users-schema.js');
 
 async function getUsers() {
   return Users.find({});

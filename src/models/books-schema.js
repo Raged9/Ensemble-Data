@@ -1,7 +1,9 @@
-module.exports = (db) =>
-  db.model(
-    'Books',
-    db.Schema({
-      title: String,
-    })
-  );
+const mongoose = require('mongoose');
+
+const customerSchema = new mongoose.Schema({
+  title : String,
+});
+
+const Users = mongoose.model('Books', booksSchema);
+
+module.exports = { Books };
