@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const customerSchema = new mongoose.Schema({
+const booksSchema = new mongoose.Schema({
   title : String,
 });
 
-const Users = mongoose.model('Books', booksSchema);
+const Books = mongoose.model('Books', booksSchema);
 
 module.exports = { Books };

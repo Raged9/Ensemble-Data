@@ -9,6 +9,6 @@ const customerSchema = new mongoose.Schema({
   twitch: String,
 });
 
-const Users = mongoose.model('Customer', customerSchema);
+const Customer = mongoose.model('Customer', customerSchema);
 
 module.exports = { Customer };
