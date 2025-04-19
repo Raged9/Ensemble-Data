@@ -9,5 +9,8 @@ module.exports = (app) => {
 
   route.get('/', customerController.getUsedUnits);
 
-  route.get('/', customerController.getUnitsHistory);
+  route.get('/by-days', customerController.getUnitsHistory);
+
+  route.post('/', customerController.createDataUnits);
+
 };

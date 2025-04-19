@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const customerSchema = new mongoose.Schema({
-  date: Date,
+  tanggal: Date,
   tiktok: String,
   instagram: String,
   reddit: String,
