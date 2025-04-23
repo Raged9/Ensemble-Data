@@ -4,6 +4,7 @@ const { errorResponder, errorTypes } = require('../../../core/errors');
 async function getUsedUnits(request, response, next) {
   try {
     const usedUnits = await customerService.getUsedUnits();
+    console.log(`Request untuk mengambil data hari ini`);
 
     return response.status(200).json(usedUnits);
   } catch (error) {
@@ -32,7 +33,7 @@ async function getUnitsHistory(request, response, next) {
   }
 }
 
-async function createDataUnits(request, response, next) {
+async function createDataCustomer(request, response, next) {
   try {
     const {
       tanggal,
@@ -69,5 +70,5 @@ async function createDataUnits(request, response, next) {
 module.exports = {
   getUnitsHistory,
   getUsedUnits,
-  createDataUnits,
+  createDataCustomer,
 };

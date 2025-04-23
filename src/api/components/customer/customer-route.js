@@ -11,6 +11,6 @@ module.exports = (app) => {
 
   route.get('/by-days', customerController.getUnitsHistory);
 
-  route.post('/', customerController.createDataUnits);
+  route.post('/', customerController.createDataCustomer);
 
 };

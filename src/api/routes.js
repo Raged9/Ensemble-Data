@@ -1,15 +1,13 @@
 const express = require('express');
 
-const books = require('./components/books/books-route');
-const users = require('./components/users/users-route');
 const customer = require('./components/customer/customer-route');
+const instagram = require('./components/instagram/instagram-route')
 
 module.exports = () => {
   const app = express.Router();
 
-  books(app);
-  users(app);
   customer(app);
+  instagram(app);
 
   return app;
 };
