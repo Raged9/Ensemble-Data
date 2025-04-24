@@ -4,7 +4,6 @@ const { errorResponder, errorTypes } = require('../../../core/errors');
 async function getUsedUnits(request, response, next) {
   try {
     const usedUnits = await customerService.getUsedUnits();
-    console.log(`Request untuk mengambil data hari ini`);
 
     return response.status(200).json(usedUnits);
   } catch (error) {
@@ -14,21 +13,13 @@ async function getUsedUnits(request, response, next) {
 
 async function getUnitsHistory(request, response, next) {
   try {
-    // Tambahkan log untuk debugging
+
     const days = parseInt(request.query.days) || 7;
-    console.log(`Request untuk mengambil data ${days} hari terakhir`);
     
     const customers = await customerService.getUnitsHistory(days);
-    console.log(`Data yang ditemukan: ${customers.length} item`);
-    
-    // Log data pertama untuk debugging jika ada
-    if (customers.length > 0) {
-      console.log(`Contoh data pertama:`, JSON.stringify(customers[0]));
-    }
     
     return response.status(200).json(customers);
   } catch (error) {
-    console.error(`Error saat mengambil data: ${error.message}`);
     return next(error);
   }
 }
@@ -44,8 +35,7 @@ async function createDataCustomer(request, response, next) {
       twitch,
     } = request.body;
 
-    // Create the data
-    const success = await customerService.createDataUnits(
+    const success = await customerService.createDataCustomer(
       tanggal,
       tiktok,
       instagram,

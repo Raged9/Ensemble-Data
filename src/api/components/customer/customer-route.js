@@ -7,7 +7,7 @@ const route = express.Router();
 module.exports = (app) => {
   app.use('/customer', route);
 
-  route.get('/', customerController.getUsedUnits);
+  route.get('/used-units', customerController.getUsedUnits);
 
   route.get('/by-days', customerController.getUnitsHistory);
 
