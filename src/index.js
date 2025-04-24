@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 const config = require('./core/config');
 const logger = require('./core/logger')('app');
