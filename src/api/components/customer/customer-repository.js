@@ -1,4 +1,4 @@
-const { Customer } = require('/Users/Arya/Documents/Ensemble Data/Ensemble-Data/src/models/customer-schema.js');
+const { Customer } = require('../../../models/customer-schema.js');
 
 async function getUsedUnits() {
   // Buat tanggal untuk awal hari ini (00:00:00)

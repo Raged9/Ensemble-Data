@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const routes = require('./api/routes.js'); // Adjust path as needed
-app.use('/', routes());
+app.use('/apis', routes());
 
 const connectionString = new URL(config.database.connection);
 connectionString.pathname += config.database.name;

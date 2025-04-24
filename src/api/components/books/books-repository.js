@@ -1,4 +1,5 @@
-const { Books } = require('/Users/Arya/Documents/Ensemble Data/Ensemble-Data/src/models/books-schema.js');
+// eslint-disable-next-line prettier/prettier
+const { Books } = require('../../../models/books-schema.js');
 
 async function getBooks() {
   return Books.find({});
