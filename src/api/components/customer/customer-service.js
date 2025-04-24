@@ -8,12 +8,12 @@ async function getUsedUnits() {
   return customerRepository.getUsedUnits();
 }
 
-async function createDataUnits(tanggal, tiktok, reddit, instagram, youtube, twitch){
+async function createDataCustomer(tanggal, tiktok, reddit, instagram, youtube, twitch){
   return customerRepository.createDataUnits(tanggal, tiktok, reddit, instagram, youtube, twitch);
 }
 
 module.exports = {
   getUnitsHistory,
   getUsedUnits,
-  createDataUnits,
+  createDataCustomer,
 };

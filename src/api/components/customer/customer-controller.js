@@ -13,26 +13,18 @@ async function getUsedUnits(request, response, next) {
 
 async function getUnitsHistory(request, response, next) {
   try {
-    // Tambahkan log untuk debugging
+
     const days = parseInt(request.query.days) || 7;
-    console.log(`Request untuk mengambil data ${days} hari terakhir`);
     
     const customers = await customerService.getUnitsHistory(days);
-    console.log(`Data yang ditemukan: ${customers.length} item`);
-    
-    // Log data pertama untuk debugging jika ada
-    if (customers.length > 0) {
-      console.log(`Contoh data pertama:`, JSON.stringify(customers[0]));
-    }
     
     return response.status(200).json(customers);
   } catch (error) {
-    console.error(`Error saat mengambil data: ${error.message}`);
     return next(error);
   }
 }
 
-async function createDataUnits(request, response, next) {
+async function createDataCustomer(request, response, next) {
   try {
     const {
       tanggal,
@@ -43,8 +35,7 @@ async function createDataUnits(request, response, next) {
       twitch,
     } = request.body;
 
-    // Create the data
-    const success = await customerService.createDataUnits(
+    const success = await customerService.createDataCustomer(
       tanggal,
       tiktok,
       instagram,
@@ -69,5 +60,5 @@ async function createDataUnits(request, response, next) {
 module.exports = {
   getUnitsHistory,
   getUsedUnits,
-  createDataUnits,
+  createDataCustomer,
 };
