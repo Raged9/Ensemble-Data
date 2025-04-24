@@ -9,9 +9,9 @@ module.exports = (app) => {
 
   route.get('/followers', twitchController.getFollowers);
   
-  route.get('/', twitchController.getVideos);
 
   route.get('/search', twitchController.search);
+  route.get('/', twitchController.search); 
 
   route.post('/', twitchController.createFollowers);
 };

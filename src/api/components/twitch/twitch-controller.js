@@ -6,9 +6,8 @@ async function getFollowers(request, response, next) {
     const followers = await twitchService.getFollowers();
     
     const formattedFollowers = followers.map(item => ({
-      _id: item._id,
-      data: item.data,
-      __v: item.__v
+      username: item.username,
+      data: item.data
     }));
     
     return response.status(200).json(formattedFollowers);
@@ -18,38 +17,25 @@ async function getFollowers(request, response, next) {
   }
 }
 
-async function getVideos(request, response, next) {
-  try {
-    const videos = await twitchService.getVideos();
-    
-    const formattedVideos = {
-      data: {
-        videos: videos,
-        count: videos.length
-      }
-    };
-    
-    return response.status(200).json(formattedVideos);
-  } catch (error) {
-    console.error(`Error saat mengambil videos: ${error.message}`);
-    return next(error);
-  }
-}
-
 async function search(request, response, next) {
   try {
     const { keyword } = request.query;
     
-    if (!keyword) {
-      throw errorResponder(
-        errorTypes.BAD_REQUEST,
-        'Keyword is required for search'
-      );
-    }
-    
     const searchResults = await twitchService.search(keyword);
     
-    return response.status(200).json(searchResults);
+    const formattedResults = {
+      data: {
+        videos: searchResults.data.videos.map(item => ({
+          _id: item._id,
+          data: item.data,
+          videos: item.videos,
+          count: item.count
+        })),
+        count: searchResults.data.count
+      }
+    };
+    
+    return response.status(200).json(formattedResults);
   } catch (error) {
     console.error(`Error saat mencari data: ${error.message}`);
     return next(error);
@@ -58,18 +44,26 @@ async function search(request, response, next) {
 
 async function createFollowers(request, response, next) {
   try {
-    const { data, videos, count } = request.body;
+    const { username, data, videos, count } = request.body;
 
-    if (!data || !videos) {
+    if (!username) {
       throw errorResponder(
         errorTypes.BAD_REQUEST,
-        'Both data and videos fields are required'
+        'Username is required'
+      );
+    }
+
+    if (!data) {
+      throw errorResponder(
+        errorTypes.BAD_REQUEST,
+        'Data field is required'
       );
     }
 
     const newData = await twitchService.createFollowers({
+      username,
       data,
-      videos,
+      videos: videos || "", 
       count
     });
 
@@ -91,7 +85,6 @@ async function createFollowers(request, response, next) {
 
 module.exports = {
   getFollowers,
-  getVideos,
-  createFollowers,
   search,
+  createFollowers,
 };

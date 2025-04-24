@@ -11,8 +11,8 @@ const logger = require('./core/logger')('app');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const routes = require('./api/routes.js'); // Adjust path as needed
-app.use('/apis', routes());
+const routes = require('./api/routes.js'); 
+app.use('/', routes());
 
 const connectionString = new URL(config.database.connection);
 connectionString.pathname += config.database.name;

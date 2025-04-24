@@ -9,9 +9,13 @@ async function search(keyword) {
   
   const results = allData.filter(item => {
     const videosLowerCase = (item.videos || '').toLowerCase();
+    const dataLowerCase = (item.data || '').toLowerCase();
+    const usernameLowerCase = (item.username || '').toLowerCase();
     const keywordLowerCase = keyword.toLowerCase();
     
-    return videosLowerCase.includes(keywordLowerCase);
+    return videosLowerCase.includes(keywordLowerCase) || 
+           dataLowerCase.includes(keywordLowerCase) ||
+           usernameLowerCase.includes(keywordLowerCase);
   });
   
   return results;
